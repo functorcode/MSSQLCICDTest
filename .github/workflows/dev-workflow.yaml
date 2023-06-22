@@ -13,7 +13,7 @@ jobs:
             - uses: actions/upload-artifact@v3.1.2
               with:
                   name: MSSQLCICDTEST
-                  path: ${{ github.workspace }}/bin/Release/
+                  path: ${{ github.workspace }}\bin/Release\
     deploytestenv:
         runs-on: self-hosted
         steps:

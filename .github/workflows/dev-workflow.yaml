@@ -9,4 +9,23 @@ jobs:
             - name: Build now
               run: |
                 msbuild -p:Configuration=Release
-        
+            # Publish artifact
+            - uses: actions/upload-artifact@v3.1.2
+              with:
+                  name: MSSQLCICDTEST
+                  path: ${{ github.workspace }}/bin/Release/
+    deploytestenv:
+        runs-on: self-hosted
+        steps:
+            - name: download artifact
+              uses: actions/download-artifact@v3.0.2
+              with:
+                name: MSSQLCICDTEST
+                  - name: Azure SQL Deploy
+            - uses: Azure/sql-action@v2
+              with:
+                  connection-string: 'Data Source=localhost\sqlexpress;Initial Catalog=AdventureWorksTestEnv;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Command Timeout=0'
+                  # Path to the dacpac file in the artifact
+                  path: './MSSQLCICD.dacpac'
+                  # Action we want it to do, in this case 'Publish' the contents of the dacpac to the database
+                  action: 'publish'

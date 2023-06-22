@@ -6,10 +6,11 @@ jobs:
         steps:
             - name: checkout code
               uses: actions/checkout@v3
-            - name: Add msbuild to PATH
-              uses: microsoft/setup-msbuild@v1.3.1
-    # create dacpac using MSBUILD
+            - name: Set up .NET Core
+              uses: actions/setup-dotnet@v1
+              with:
+                dotnet-version: '4.7.2'
             - name: Build Database project
               run: |
-                msbuild.exe MSSQLCICD/MSSQLCICD.sqlproj /p:Configuration=Release
+                dotnet build --configuration Release
         

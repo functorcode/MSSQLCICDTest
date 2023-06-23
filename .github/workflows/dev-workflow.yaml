@@ -19,7 +19,7 @@ jobs:
     deploytestenv:
         name: deploy on test enviorment
         needs: [build]
-        enviorment: testenv
+        environment: testenv
         runs-on: self-hosted
         steps:
             - name: download artifact

@@ -26,9 +26,7 @@ jobs:
               uses: actions/download-artifact@v3.0.2
               with:
                 name: MSSQLCICDTEST
-            - name : setup dotnet
-              uses: actions/setup-dotnet@v3
-            - name : install sql package
+            - name : publish package to test database on local server
               run: |
-                dotnet tool install microsoft.sqlpackage
+                sqlpackage.exe /a:Publish /sf:"MSSQLCICDTEST.dacpac" /tcs:"Server=localhost;Database=testdb;Trusted_Connection=True;TrustServerCertificate=True;"
             

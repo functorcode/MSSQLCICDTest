@@ -26,11 +26,9 @@ jobs:
               uses: actions/download-artifact@v3.0.2
               with:
                 name: MSSQLCICDTEST
-            - name: Deploy dacpac
-              uses: azure/sql-action@v2.2
-              with:
-                 connection-string: "Server=localhost\\sqlexpress;Database=AdventureWorksTestEnv;User ID=cicdsqluser;Password=abc123;"
-                 # Path to the dacpac file in the artifact
-                 path: './MSSQLCICD.dacpac'
-                 # Action we want it to do, in this case 'Publish' the contents of the dacpac to the database
-                 action: 'publish'
+            - name : setup dotnet
+              uses: actions/setup-dotnet@v3
+            - name : install sql package
+              run: |
+                dotnet tool install microsoft.sqlpackage
+            

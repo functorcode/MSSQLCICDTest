@@ -19,6 +19,7 @@ jobs:
     deploytestenv:
         name: deploy on test enviorment
         needs: [build]
+        enviorment: testenv
         runs-on: self-hosted
         steps:
             - name: download artifact
@@ -28,7 +29,7 @@ jobs:
             - name: Deploy dacpac
               uses: azure/sql-action@v2.2
               with:
-                 connection-string: 'Data Source=localhost\sqlexpress;Initial Catalog=AdventureWorksTestEnv;Integrated security=True;Connection Timeout=30;'
+                 connection-string: ${{ secrets.SQL_CONNECTION_STRING }}
                   # Path to the dacpac file in the artifact
                  path: './MSSQLCICD.dacpac'
                   # Action we want it to do, in this case 'Publish' the contents of the dacpac to the database

@@ -28,5 +28,5 @@ jobs:
                 name: MSSQLCICDTEST
             - name : publish package to test database on local server
               run: |
-                sqlpackage.exe /a:Publish /sf:"MSSQLCICDTEST.dacpac" /tcs:"Server=localhost;Database=testdb;Trusted_Connection=True;TrustServerCertificate=True;"
+                sqlpackage.exe /a:Publish /sf:"MSSQLCICD.dacpac" /tcs:"Server=localhost;Database=testdb;Trusted_Connection=True;TrustServerCertificate=True;"
             

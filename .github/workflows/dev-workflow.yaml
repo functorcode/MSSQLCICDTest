@@ -23,12 +23,11 @@ jobs:
               uses: actions/download-artifact@v3.0.2
               with:
                 name: MSSQLCICDTEST
-            - name: Setup sql action 
+            - name: Deploy dacpac
               uses: azure/sql-action@v2.2
-            - name: Publish package
-              run: |
-                  sqlpackage
-                    /action:Publish
-                    /SourceFile:"./MSSQLCICD.dacpac"
-                    /TargetDatabaseName:AdventureWorksTestEnv
-                    /TargetServerName:"localhost\sqlexpress"
+              with:
+                 connection-string: 'Data Source=localhost\sqlexpress;Initial Catalog=AdventureWorksTestEnv;Integrated security=True;Connection Timeout=30;'
+                  # Path to the dacpac file in the artifact
+                 path: './MSSQLCICD.dacpac'
+                  # Action we want it to do, in this case 'Publish' the contents of the dacpac to the database
+                 action: 'publish'

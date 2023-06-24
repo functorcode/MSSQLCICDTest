@@ -21,7 +21,7 @@ jobs:
     build:
         name: "build code"
         needs: [codelint]
-        runs-on: self-hosted
+        runs-on: windows-latest
         steps:
             - name: checkout code
               uses: actions/checkout@v3

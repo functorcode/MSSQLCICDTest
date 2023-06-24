@@ -13,7 +13,7 @@ jobs:
         - name: Lint code
           uses: github/super-linter@v5
           env:
-           DEFAULT_BRANCH: dev
+           DEFAULT_BRANCH: master
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
     build:
         runs-on: self-hosted

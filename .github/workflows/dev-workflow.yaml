@@ -43,5 +43,5 @@ jobs:
                 name: MSSQLCICDTEST
             - name : publish package to test database on local server
               run: |
-                sqlpackage.exe /a:Publish /sf:"MSSQLCICD.dacpac" /tcs:${{ secrets.SQL_CONNECTION_STRING }}
+                sqlpackage.exe /a:Publish /sf:"MSSQLCICD.dacpac" /tcs:"${{ secrets.SQL_CONNECTION_STRING }}"
             

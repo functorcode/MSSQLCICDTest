@@ -2,7 +2,7 @@ name: build-pipeline
 on:
     pull_request:
         branches:
-            - master
+            - prod
 jobs:
     codelint:
         name: "lint code"
@@ -14,7 +14,7 @@ jobs:
         - name: Lint code
           uses: github/super-linter@v5
           env:
-           DEFAULT_BRANCH: master
+           DEFAULT_BRANCH: prod
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
            DISABLE_ERRORS: true
     build:
@@ -37,7 +37,7 @@ jobs:
     deploytestenv:
         name: deploy on test enviorment
         needs: [build]
-        environment: testenv
+        environment: prodenv
         runs-on: self-hosted
         steps:
             - name: download artifact

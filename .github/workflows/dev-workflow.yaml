@@ -2,7 +2,7 @@ name: build-pipeline
 on:
     pull_request:
         branches:
-            - dev
+            - master
 jobs:
     codelint:
         runs-on: ubuntu-latest

@@ -17,6 +17,7 @@ jobs:
            DEFAULT_BRANCH: master
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
            DISABLE_ERRORS: true
+
     build:
         name: "build code"
         needs: [codelint]
@@ -24,11 +25,15 @@ jobs:
         steps:
             - name: checkout code
               uses: actions/checkout@v3
+            - name: Initialize CodeQL
+              uses: github/codeql-action/init@v2
             - name: add msbuild to path
               uses: microsoft/setup-msbuild@v1.3.1
             - name: Build now
               run: |
                 msbuild -p:Configuration=Release
+            - name: Perform CodeQL Analysis
+              uses: github/codeql-action/analyze@v2
             # Publish artifact
             - uses: actions/upload-artifact@v3.1.2
               with:

@@ -34,8 +34,8 @@ jobs:
               with:
                   name: MSSQLCICDTEST
                   path: ${{ github.workspace }}\MSSQLCICD\bin\Release\
-    deploytestenv:
-        name: deploy on test enviorment
+    deployprodenv:
+        name: deploy on prod enviorment
         needs: [build]
         environment: prodenv
         runs-on: self-hosted

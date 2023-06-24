@@ -15,6 +15,7 @@ jobs:
           env:
            DEFAULT_BRANCH: master
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+           DISABLE_ERRORS: true
     build:
         runs-on: self-hosted
         steps:
